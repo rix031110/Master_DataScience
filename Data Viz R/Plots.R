@@ -23,3 +23,5 @@ ggplot(mpg) +
 ggplot(mpg,mapping= aes(x=displ, y=hwy)) + 
   geom_smooth()+
   geom_point(mapping = aes(col= class))
+
+
