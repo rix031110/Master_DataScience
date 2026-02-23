@@ -7,3 +7,5 @@ ggplot(mpg) + #it ccreates a hollow plot
 ggplot(mpg) + 
   geom_point(mapping = aes(x=displ, y=hwy, color=class)) #the collor correspond to the class
 
+ggplot(mpg) + 
+  geom_point(mapping = aes(x=displ, y=hwy, shape=drv)) #the shape correspond to the drv
