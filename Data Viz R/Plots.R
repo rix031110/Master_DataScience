@@ -9,3 +9,5 @@ ggplot(mpg) +
 
 ggplot(mpg) + 
   geom_point(mapping = aes(x=displ, y=hwy, shape=drv)) #the shape correspond to the drv
+
+prova,2
