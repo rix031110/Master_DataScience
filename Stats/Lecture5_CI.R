@@ -85,3 +85,24 @@ t.test(x,y, conf.level=0.95, var.equal = FALSE) #we can also remove var.equal
 #is it reasonable to assume equal variances?
 var.test(x,y, conf.level=0.95) #it gives a confidence interval (sigma1^2/sigma2^2)
 #it is reasonable as the CI includes 1
+
+######################### CI FOR VARIANCE############
+Norm.Var.CI= function(x, lev=0.95){
+  n= length(x)
+  s2= var(x) #sample variance
+  alpha= 1-lev
+  q1= qchisq(1-alpha/2, n-1) #higher qua
+  q2= qchisq(alpha/2, n-1) #lower q
+  L1= (n-1)*s2/q1
+  L2= (n-1)*s2/q2
+  return(c(L1,L2))
+}
+set.seed(1234)
+x= rnorm(50)
+Norm.Var.CI(x)
+
+#For CI on the ratio of 2 var
+x=rnorm(50)
+y=rnorm(30,1)
+var.test(x,y) #at 95% by default of var1/var2
+#as the value 1 is in the CI, the 2 variances can be treated as equal
