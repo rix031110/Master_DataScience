@@ -4,7 +4,8 @@ wholesale=read_csv("Data Viz R/Wholesale_customers_data.csv")#it creates a tibbl
 wholesale 
 
 wholesale[,1]
-
+library("skim")
+skim("Desktop/Master_DataScience/Data Viz R/Wholesale_customers_data.csv")
 summary(wholesale)
 wholesale|>
   filter(Channel=="Retail") #select columns, usign a filter
