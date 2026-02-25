@@ -12,5 +12,17 @@ pokemon_df <- tuesdata$pokemon_df
 
 pokemon_df <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-04-01/pokemon_df.csv')
 
+summary(pokemon_df)
+pokemon_df
+library(skimr)
+library(tidyverse)
+skim(pokemon_df)
+
+rock_weight= pokemon_df |> 
+  filter(type_1=="rock") |> 
+  select(weight)
 
 pokemon_df
+library(ggplot2)
+ggplot(pokemon_df)+
+  geom_point(mapping= aes(x= special_attack, y=special_defense, col=type_1))
