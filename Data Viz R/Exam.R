@@ -22,7 +22,23 @@ rock_weight= pokemon_df |>
   filter(type_1=="rock") |> 
   select(weight)
 
-pokemon_df
+
+type_spec_attributes= pokemon_df |> 
+  summarise(total_spec_att=sum(special_attack),
+total_spec_def= sum(special_defense),
+.by = type_1) |> 
+  arrange(desc(total_spec_att))
+
+type_spec_attributes
+
+type_attributes= pokemon_df |> 
+  summarise(total_att=sum(attack),
+total_def= sum(defense),
+.by = type_1) |> 
+  arrange(desc(total_att))
+
+type_attributes
+# pokemon_df
 library(ggplot2)
-ggplot(pokemon_df)+
-  geom_point(mapping= aes(x= special_attack, y=special_defense, col=type_1))
+ggplot(type_spec_attributes, mapping=aes(x= total_spec_def, y= total_spec_att))+
+  geom_abline(stat = type_attributes)
