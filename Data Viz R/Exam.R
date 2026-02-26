@@ -42,3 +42,8 @@ type_attributes
 library(ggplot2)
 ggplot(type_spec_attributes, mapping=aes(x= total_spec_def, y= total_spec_att))+
   geom_abline(stat = type_attributes)
+
+summary(pokemon_df)
+
+ggplot(pokemon_df, mapping=aes(x= speed, y= special_attack))+
+  geom_point(aes(col= type_1))
