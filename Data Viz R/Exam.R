@@ -17,11 +17,11 @@ pokemon_df
 library(skimr)
 library(tidyverse)
 skim(pokemon_df)
-
+head(pokemon_df)
 rock_weight= pokemon_df |> 
   filter(type_1=="rock") |> 
   select(weight)
-
+rock_weight
 
 type_spec_attributes= pokemon_df |> 
   summarise(total_spec_att=sum(special_attack),
@@ -38,6 +38,15 @@ total_def= sum(defense),
   arrange(desc(total_att))
 
 type_attributes
+
+pokemon_df1= pokemon_df |>
+  filter(generation_id != "NA") |> 
+  summarise(total_num=sum(generation_id),.by= type_1,) |> 
+  arrange(desc(total_num)) |> 
+  select(10,)
+
+pokemon_df1
+pokemon_df$generation_id
 # pokemon_df
 library(ggplot2)
 ggplot(type_spec_attributes, mapping=aes(x= total_spec_def, y= total_spec_att))+
@@ -46,4 +55,4 @@ ggplot(type_spec_attributes, mapping=aes(x= total_spec_def, y= total_spec_att))+
 summary(pokemon_df)
 
 ggplot(pokemon_df, mapping=aes(x= speed, y= special_attack))+
-  geom_point(aes(col= type_1))
+  geom_point(aes(col= type_1, size=generation_id))
