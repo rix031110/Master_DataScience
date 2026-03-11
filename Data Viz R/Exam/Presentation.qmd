@@ -7,10 +7,13 @@ author:
   - Sayatan Mandal
 format: revealjs
 theme: serif
+
 ---
-## Our mission: catch them all!
+## Our mission: catch them all! 
 
 Our main goal is to provide some insights on the pokemon world to help parents to advice their children on how to catch them all.
+
+![](pokedex.png){fig-align="center" width=50%}
 
 ## The data
 
@@ -157,7 +160,7 @@ The most populated generations are **the 1st, 3rd and 5th**, highlighted in blue
 
 Nevertheless, the most powerfull generation considering all four stats (combined attack, combined defense, hp and speed) is **the 4th generation**. 
 
-![Some Pokemon of 4th gen]("C:\Users\ricdo\Downloads\f1615180-4a29-45f8-983e-b4bfc134cf65pokemon-40-generazione.webp")
+![The starters of 4th gen](starters_4th.jpg)
 
 ## Distribution of stats by type
 We can also analyze the distribution of stats by type to see which types are more powerful.
