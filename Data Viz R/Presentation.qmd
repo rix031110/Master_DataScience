@@ -1,15 +1,16 @@
 ---
 title: "Who's that pokemon?"
+subtitle: "A research on the most competitive Pokemon // A.Y. 2025-2026"
 author: 
   - Maria Briones
   - Riccardo Dondi
   - Sayatan Mandal
 format: revealjs
+theme: serif
 ---
 ## Our mission: catch them all!
 
-Our main goal is to provide some insights on the pokemon world 
-to help parents to advice their children on how to catch them all.
+Our main goal is to provide some insights on the pokemon world to help parents to advice their children on how to catch them all.
 
 ## The data
 
@@ -45,7 +46,7 @@ pokemon_df <- tt_load(2025, week = 13)$pokemon_df
 ```
 
 It contains in total information about `{r} nrow(pokemon_df)` pokemons studied on `{r} ncol(pokemon_df)` variables, both numerical and categorical.
-After removing some null values and keeping only the most relevant ones, we will be working with 802 pokemons and 19 variables.
+After removing some null values and keeping only the most relevant ones, we will be working with **802 pokemons and 19 variables**.
 
 ## Variables {.scrollable}
 
@@ -61,29 +62,29 @@ pokemon_df <- pokemon_df |>
          type_1 = str_to_title(type_1))
 ```
 
-* id: the id of the pokemon
-* pokemon: the name of the pokemon
-* height: the height of the pokemon in meters
-* weight: the weight of the pokemon in kilograms
-* base_experience: the base experience of the pokemon when catched
-* type_1: the primary type of the pokemon
-* type_2: the secondary type of the pokemon (if it has one)
-* hp: the health points of the pokemon
-* attack: the attack points of the pokemon
-* defense: the defense points of the pokemon
-* special_attack: the special attack points of the pokemon
-* special_defense: the special defense points of the pokemon
-* speed: the speed points of the pokemon
-* generation_id: the generation on wich the pokemon was introduced
+* id: the id of the pokemon (num)
+* pokemon: the name of the pokemon (chr)
+* height: the height of the pokemon in meters (num)
+* weight: the weight of the pokemon in kilograms (num)
+* base_experience: the base experience of the pokemon when catched (num)
+* type_1: the primary type of the pokemon (chr)
+* type_2: the secondary type of the pokemon (if it has one) (chr)
+* hp: the health points of the pokemon (num)
+* attack: the attack points of the pokemon (num)
+* defense: the defense points of the pokemon (num)
+* special_attack: the special attack points of the pokemon (num)
+* special_defense: the special defense points of the pokemon (num)
+* speed: the speed points of the pokemon (num)
+* generation_id: the generation on wich the pokemon was introduced (num)
 
 ## The insights
 
 We worked mainly on 4 insights:
 
-* *Distribution of pokemons by generation*
-* Distribution by type
-* Proportion of pokemons by type
-* *Distribution of stats by type*
+* **Distribution of pokemons by generation** (table)
+* Distribution by type (table)
+* Proportion of pokemons by type (plot)
+* **Distribution of stats by type** (plot)
 
 ## Distribution by generation
 
@@ -109,7 +110,8 @@ interest_stats = pokemon_df |>
             avg_hp = mean(hp, na.rm = TRUE),
             avg_attack = mean(comb_attack, na.rm = TRUE),
             avg_defense = mean(comb_defense, na.rm = TRUE),
-            avg_speed = mean(speed, na.rm = TRUE)
+            avg_speed = mean(speed, na.rm = TRUE),
+            total_avg_stat= sum(avg_hp,avg_attack,avg_defense,avg_speed)
 )
 ```
 
@@ -126,6 +128,7 @@ top_hp <- rank(-interest_stats$avg_hp) <= 3
 top_attack <- rank(-interest_stats$avg_attack) <= 3
 top_defense <- rank(-interest_stats$avg_defense) <= 3
 top_speed <- rank(-interest_stats$avg_speed) <= 3
+top_total <- rank(-interest_stats$total_avg_stat) <= 1
 
 turbo=turbo(n=3, begin= 0.8, end=0.99, direction = 1) #3 color from turbo palette
 
@@ -135,6 +138,7 @@ hp_colors <- ifelse(top_hp, spec_color(interest_stats$avg_hp, palette=turbo), "b
 at_colors <- ifelse(top_attack, spec_color(interest_stats$avg_attack, palette=turbo),"black")
 def_colors <- ifelse(top_defense, spec_color(interest_stats$avg_defense, palette=turbo),"black")
 sp_colors <- ifelse(top_speed, spec_color(interest_stats$avg_speed, palette=turbo),"black")
+tot_colors <- ifelse(top_total, spec_color(interest_stats$total_avg_stat, palette=turbo),"black")
 
 interest_stats |>
   kable(digits = 2) %>%
@@ -147,7 +151,22 @@ interest_stats |>
   column_spec(6, color = sp_colors, bold = top_speed)
 ```
 
+---
+
+The most populated generations are **the 1st, 3rd and 5th**, highlighted in blue in the table.
+
+Nevertheless, the most powerfull generation considering all four stats (combined attack, combined defense, hp and speed) is **the 4th generation**. 
+
+![Some Pokemon of 4th gen]("C:\Users\ricdo\Downloads\f1615180-4a29-45f8-983e-b4bfc134cf65pokemon-40-generazione.webp")
+
 ## Distribution of stats by type
+We can also analyze the distribution of stats by type to see which types are more powerful.
+
+We used a bar-plot, in which each color represents a stat.
+
+
+
+---
 
 ```{r}
 #| label: type-stats

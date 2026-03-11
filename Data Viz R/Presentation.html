@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/theme/quarto-99eeafcedac04850354b682963cedae3.css">
   <link href="Presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -134,6 +134,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Who’s that pokemon?</h1>
+  <p class="subtitle">A research on the most competitive Pokemon // A.Y. 2025-2026</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -161,35 +162,35 @@ Sayatan Mandal
 <section id="the-data" class="slide level2">
 <h2>The data</h2>
 <p>We will be using the <a href="https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-04-01/readme.md">Pokemon</a> dataset, which contains information about all the pokemon from the first generation to the seventh generation.</p>
-<p>It contains in total information about 949 pokemons studied on 22 variables, both numerical and categorical. After removing some null values and keeping only the most relevant ones, we will be working with 802 pokemons and 19 variables.</p>
+<p>It contains in total information about 949 pokemons studied on 22 variables, both numerical and categorical. After removing some null values and keeping only the most relevant ones, we will be working with <strong>802 pokemons and 19 variables</strong>.</p>
 </section>
 <section id="variables" class="slide level2 scrollable">
 <h2>Variables</h2>
 <ul>
-<li>id: the id of the pokemon</li>
-<li>pokemon: the name of the pokemon</li>
-<li>height: the height of the pokemon in meters</li>
-<li>weight: the weight of the pokemon in kilograms</li>
-<li>base_experience: the base experience of the pokemon when catched</li>
-<li>type_1: the primary type of the pokemon</li>
-<li>type_2: the secondary type of the pokemon (if it has one)</li>
-<li>hp: the health points of the pokemon</li>
-<li>attack: the attack points of the pokemon</li>
-<li>defense: the defense points of the pokemon</li>
-<li>special_attack: the special attack points of the pokemon</li>
-<li>special_defense: the special defense points of the pokemon</li>
-<li>speed: the speed points of the pokemon</li>
-<li>generation_id: the generation on wich the pokemon was introduced</li>
+<li>id: the id of the pokemon (num)</li>
+<li>pokemon: the name of the pokemon (chr)</li>
+<li>height: the height of the pokemon in meters (num)</li>
+<li>weight: the weight of the pokemon in kilograms (num)</li>
+<li>base_experience: the base experience of the pokemon when catched (num)</li>
+<li>type_1: the primary type of the pokemon (chr)</li>
+<li>type_2: the secondary type of the pokemon (if it has one) (chr)</li>
+<li>hp: the health points of the pokemon (num)</li>
+<li>attack: the attack points of the pokemon (num)</li>
+<li>defense: the defense points of the pokemon (num)</li>
+<li>special_attack: the special attack points of the pokemon (num)</li>
+<li>special_defense: the special defense points of the pokemon (num)</li>
+<li>speed: the speed points of the pokemon (num)</li>
+<li>generation_id: the generation on wich the pokemon was introduced (num)</li>
 </ul>
 </section>
 <section id="the-insights" class="slide level2">
 <h2>The insights</h2>
 <p>We worked mainly on 4 insights:</p>
 <ul>
-<li><em>Distribution of pokemons by generation</em></li>
-<li>Distribution by type</li>
-<li>Proportion of pokemons by type</li>
-<li><em>Distribution of stats by type</em></li>
+<li><strong>Distribution of pokemons by generation</strong> (table)</li>
+<li>Distribution by type (table)</li>
+<li>Proportion of pokemons by type (plot)</li>
+<li><strong>Distribution of stats by type</strong> (plot)</li>
 </ul>
 </section>
 <section id="distribution-by-generation" class="slide level2">
@@ -220,6 +221,7 @@ Table&nbsp;1: Pokemon stats by generation
 <th style="text-align: right;" data-quarto-table-cell-role="th">avg_attack</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">avg_defense</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">avg_speed</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">total_avg_stat</th>
 </tr>
 </thead>
 <tbody>
@@ -230,6 +232,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; color: black !important;">140.05</td>
 <td style="text-align: right; color: black !important;">134.31</td>
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">69.07</td>
+<td style="text-align: right;">407.64</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2</td>
@@ -238,6 +241,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; color: black !important;">132.76</td>
 <td style="text-align: right; color: black !important;">142.03</td>
 <td style="text-align: right; color: black !important;">61.41</td>
+<td style="text-align: right;">407.18</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">3</td>
@@ -246,6 +250,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; color: black !important;">140.97</td>
 <td style="text-align: right; color: black !important;">135.47</td>
 <td style="text-align: right; color: black !important;">61.61</td>
+<td style="text-align: right;">403.73</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">4</td>
@@ -254,6 +259,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">153.50</td>
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">149.68</td>
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">69.48</td>
+<td style="text-align: right;">445.76</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
@@ -262,6 +268,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; font-weight: bold; color: rgba(199, 39, 3, 255) !important;">150.28</td>
 <td style="text-align: right; color: black !important;">138.57</td>
 <td style="text-align: right; font-weight: bold; color: rgba(199, 39, 3, 255) !important;">66.60</td>
+<td style="text-align: right;">425.76</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">6</td>
@@ -270,6 +277,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; color: black !important;">145.04</td>
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">149.94</td>
 <td style="text-align: right; color: black !important;">65.68</td>
+<td style="text-align: right;">429.58</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">7</td>
@@ -278,6 +286,7 @@ Table&nbsp;1: Pokemon stats by generation
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">156.68</td>
 <td style="text-align: right; font-weight: bold; color: rgba(131, 7, 2, 255) !important;">151.89</td>
 <td style="text-align: right; color: black !important;">64.54</td>
+<td style="text-align: right;">443.80</td>
 </tr>
 </tbody>
 </table>
@@ -288,8 +297,19 @@ Table&nbsp;1: Pokemon stats by generation
 </div>
 </div>
 </section>
+<section class="slide level2">
+
+<p>The most populated generations are <strong>the 1st, 3rd and 5th</strong>, highlighted in blue in the table.</p>
+<p>Nevertheless, the most powerfull generation considering all four stats (combined attack, combined defense, hp and speed) is <strong>the 4th generation</strong>.</p>
+
+<img data-src="%22C:\Users\ricdo\Downloads\f1615180-4a29-45f8-983e-b4bfc134cf65pokemon-40-generazione.webp%22" class="r-stretch quarto-figure-center"><p class="caption">Some Pokemon of 4th gen</p></section>
 <section id="distribution-of-stats-by-type" class="slide level2">
 <h2>Distribution of stats by type</h2>
+<p>We can also analyze the distribution of stats by type to see which types are more powerful.</p>
+<p>We used a bar-plot, in which each color represents a stat.</p>
+</section>
+<section class="slide level2">
+
 
 
 <img data-src="Presentation_files/figure-revealjs/type-stats-1.png" width="960" class="r-stretch"></section>
