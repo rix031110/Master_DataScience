@@ -168,8 +168,6 @@ We can also analyze the distribution of stats by type to see which types are mor
 
 We used a bar-plot, in which each color represents a stat.
 
-
-
 ---
 
 ```{r}
