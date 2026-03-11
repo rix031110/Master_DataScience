@@ -197,3 +197,6 @@ geom_bar(stat="identity", position=position_dodge())
 
 ```
 
+## Conclusions
+
+Which pokemon is the best choice?
