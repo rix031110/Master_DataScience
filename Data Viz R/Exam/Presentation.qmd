@@ -14,7 +14,7 @@ theme: sky
 <p align="center">
 Our main goal is to provide some insights on the pokemon world to help parents to advice their children on how to catch them all.
 
-![The pokedex of Sinnoh region](pokedex_2-removebg-preview.png){fig-align="center" width=50%}
+![The pokedex of Sinnoh region](727px-Pok%C3%A9dex_Sinnoh_Pt.webp){fig-align="center" width=50%}
 
 ## The data
 
