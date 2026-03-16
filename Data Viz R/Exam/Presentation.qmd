@@ -128,7 +128,7 @@ dual_summary |>
 
 ```
 
---- {.scrollable}
+---
 
 ```{r dplyr-insight-1}
 type_dual <- df |>
