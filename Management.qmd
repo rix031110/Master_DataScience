@@ -1,0 +1,52 @@
+title: "Salesforce Strategy Shift 2022–2025"
+format:
+  revealjs:
+    theme: cosmo
+    slide-number: true
+    transition: fade
+
+# Introduction
+Salesforce Strategy Shift (2022–2025)
+Salesforce moved from a Buy strategy → to a Build + Partner strategy
+
+Shift driven by the high costs of buying
+
+Focus moved from acquiring platforms to owning the AI orchestration layer
+
+# From BUY → BUILD + PARTNER
+**2020–2022**: Aggressive Buy Strategy
+Major acquisitions:
+
+- Slack ($27.7B)
+- MuleSoft, Tableau (earlier but same logic)
+
+Goal: expand the platform horizontally
+
+
+**2022–2025**: Build + Partner Strategy 
+
+Goal: stop buying large platforms, instead let partners provide the foundation models
+
+Subsequent pivot to internal R&D with strategic partnership to deliver generative AI
+
+
+# Main gaps
+Primarily a technology gap:
+
+-  lacked large language model capability;
+-  data layer were not unified across systems;
+
+Also talent gap :
+
+- AI expertise to build one
+
+# Is it coherent? 
+
+This startegy is highly coherent:
+
+- strategy is designed to expand the software seats
+- making them AI-capable rather than replacing them
+
+# What would we do? 
+
+# Conclusion
