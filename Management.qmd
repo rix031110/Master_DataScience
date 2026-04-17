@@ -1,52 +1,77 @@
-title: "Salesforce Strategy Shift 2022–2025"
+---
+title: "Salesforce"
+subtitle: "Innovation strategy, what have we done and what's next?"
+author: 
+  - Maria Briones
+  - Riccardo Dondi
+  - Sayantan Mandal
 format:
   revealjs:
-    theme: cosmo
+    embed-resources: true
+    #theme: cosmo
     slide-number: true
     transition: fade
+---
 
-# Introduction
-Salesforce Strategy Shift (2022–2025)
-Salesforce moved from a Buy strategy → to a Build + Partner strategy
+## {.center}
 
-Shift driven by the high costs of buying
+![](/logo.png){width="35%" height="35%" fig-align="center"}
 
-Focus moved from acquiring platforms to owning the AI orchestration layer
+Leading CRM platform offering cloud-based applications (Sales, Service, Marketing, Commerce) that help businesses manage customer interactions across the full lifecycle.
 
-# From BUY → BUILD + PARTNER
+::: {.r-fit-text}
+- Subscription-based model and professional services.
+- Increasingly centered on data and AI, with Data Cloud unifying customer information. 
+- Enable autonomous AI agents—making AI a core layer across all Salesforce products.
+:::
+
+## 
+
+![We've been moving from an agressive Buy strategy → to a Build + Partner strategy. Our focus moved from acquiring platforms to owning the AI orchestration layer](/SalesforceTL.png){width="85%" height="85%" fig-align="center"}
+
+## Why?
+On early 2021 we had to gaps preventing us from leading the industry:
+
+- **Technology gap**:
+  -  Lacked large language model capability.
+  -  Data layers were not unified across systems.
+
+- **Talent gap**:
+  - Lack of AI expertise to build one
+
+## From BUY → BUILD + PARTNER
+
 **2020–2022**: Aggressive Buy Strategy
-Major acquisitions:
 
-- Slack ($27.7B)
-- MuleSoft, Tableau (earlier but same logic)
+- Goal: Expand the platform horizontally through **strategic acquisitions**.
 
-Goal: expand the platform horizontally
+**2022–2025**: Build + Partner Strategy
+
+- Goal: Let partners provide the foundation models.
+- Subsequent pivot to **internal R&D** with **strategic partnership** to deliver generative AI.
+
+## How did this reinforce our strategy?
+
+This startegy allowed us to **remain coherent with our core bussiness** activities and at the same time reinforce our position as a leader in the CRM space by two main channels:
+
+- We expanded the software seats across our ecosystem.
+
+- Made them *AI-capable* (more efficient, more aware, more understanding) rather than replacing them.
+
+## What's next? 
+
+As we have recently secured our strategic partnership with OpenAI, and with the technology gaps been fully adressed, Salesforce should move forward to:
+
+- **Build** new products and integrating them into our platform to deliver aggregate value. This is, reinforce our product ecosystem and make it more difficult for competitors to replicate our offering.
+- This implies a strong **reinforcement to our R&D Units and our Corporate Incubator**.
+
+## {.center}
+
+![](/logo.png){width="45%" height="45%" fig-align="center"}
 
 
-**2022–2025**: Build + Partner Strategy 
+::: {style="text-align: center; text-align: center;"}
+**Thank you!**
 
-Goal: stop buying large platforms, instead let partners provide the foundation models
-
-Subsequent pivot to internal R&D with strategic partnership to deliver generative AI
-
-
-# Main gaps
-Primarily a technology gap:
-
--  lacked large language model capability;
--  data layer were not unified across systems;
-
-Also talent gap :
-
-- AI expertise to build one
-
-# Is it coherent? 
-
-This startegy is highly coherent:
-
-- strategy is designed to expand the software seats
-- making them AI-capable rather than replacing them
-
-# What would we do? 
-
-# Conclusion
+Maria Briones, Riccardo Dondi, Sayantan Mandal.
+:::
