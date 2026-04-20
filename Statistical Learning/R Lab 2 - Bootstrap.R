@@ -2,7 +2,7 @@
 ## Bootstrap ##
 ###############
 
-library(boot)
+# library(boot)
 library(ISLR)
 
 ###########################################
