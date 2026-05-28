@@ -5,9 +5,13 @@ author:
   - Riccardo Dondi
   - Sayatan Mandal
 format:
-  pdf:
+  html:
+    code-fold: true
+    theme: Brite
     toc: true
-    number-sections: true
+    toc-location: left
+    toc-expand: true
+    self-contained: true
 execute:
   echo: true #to include the chunks on the final document
   warning: false
