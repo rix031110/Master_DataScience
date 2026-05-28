@@ -6,13 +6,10 @@ author:
   - Riccardo Dondi
   - Sayantan Mandal
 format: 
-  revealjs :
-    embed-resources: true
-    width: 1200
-    height: 1000
-    margin: 0.04
-    min-scale: 0.2
-    max-scale: 2.0
+  pdf :
+    toc: true
+    number-sections: true
+    colorlinks: true
 theme: solarized
 transition: slide
 incremental: true

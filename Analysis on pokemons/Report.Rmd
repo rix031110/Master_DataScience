@@ -1,3 +1,5 @@
+
+````{r}
 ---
 title: "Who's that Pokémon?"
 author:
@@ -28,6 +30,8 @@ On this document we try to provide some insights on the Pokémon world to help p
 First we need to get our R enviroment ready and load the data. We will be using the `tidytuesdayR` package to load the data, which is a great resource for finding interesting datasets to work with.
 
 ```{r}
+````
+````{r}
 #| label: set-up
 
 #load pacman library to load all the libraries and install if needed
@@ -50,6 +54,8 @@ p_load(tidyverse, #for data manipulation
 With our environment ready we import the data and do some cleaning. We will be using the [Pokémon](https://github.com/rfordatascience/tidytuesday/blob/main/data/2025/2025-04-01/readme.md) dataset, which contains information about all the pokémon from the first generation to the seventh generation.
 
 ```{r}
+````
+````{r}
 #| label: data-import
 
 # import data Pokémon from tidytuesdayR
@@ -59,6 +65,8 @@ pokemon_df <- tt_load(2025, week = 13)$pokemon_df
 Our databse contains information about `{r} nrow(pokemon_df)` pokemons studied on `{r} ncol(pokemon_df)` variables, both numerical and categorical.
 
 ```{r}
+````
+````{r}
 #| label: first-data-exploration
 pokemon_df |> skim()
 ```
@@ -78,6 +86,8 @@ Not all of these features contain valuable information for our analysis, so we w
 -   generation_id: the generation on wich the pokémon was introduced
 
 ```{r}
+````
+````{r}
 #| label: data-cleaning
 
 # drop columns that we don't need and which have many NAs
@@ -90,6 +100,8 @@ One of the first things we notice is that there are some missing values (NA) on 
 In consequence, we will be dropping these pokemons from our analysis, since they are not representative of the general pokémon population and they could mislead our insights.
 
 ```{r}
+````
+````{r}
 #| label: data-cleaning-2
 
 # drop pokemons with missing generation_id
@@ -105,6 +117,8 @@ As we will be performing some analysis on the types of pokemons it's important t
 
 
 ```{r}
+````
+````{r}
 #| label: data-cleaning-3
 
 #manage NAs in type 2
@@ -121,6 +135,8 @@ pokemon_df = pokemon_df |>
 Now is time to adress some of our questions: How many pokemons there are in each generation? How powerfull are they? We can get some ideas about these topics by looking at the distribution of pokemons and their most important stats. To simplify our analysis we combine attack and special attack on one single variable and do the same for defense.
 
 ```{r}
+````
+````{r}
 #| label: pokemon-distribution
 
 # to a better analysis we create to combined variables
@@ -140,6 +156,8 @@ interest_stats = pokemon_df |>
 ```
 
 ```{r}
+````
+````{r}
 #| label: tbl-poke_distribution
 #| echo: false
 #| tbl-cap: "Pokemon stats by generation"
@@ -181,6 +199,8 @@ From this we can see that the most populated generations are the 1st, 3rd and 5t
 Pokemons come on a wide variety of types. Are some types more common than others?  These are very important questions as we know that advantages and weaknesses of types are a key element of the Pokémon world. For example, water type pokemons are strong against fire type pokemons but weak against electric type pokemons. In consequence, if we want to catch them all we need to know which types are more common and which types are more powerful.
 
 ```{r}
+````
+````{r}
 #| label: tbl-type_distribution
 #| tbl-cap: "Number of Pokemons by type and generation"
 
@@ -203,6 +223,8 @@ We can see that the most common types are water, normal and Grass. However, thes
 With this said. Do Dual-type Pokémon (those with a secondary type) consistently outperform single-types in raw power? As they may be less common they might be worth the effort of chasing them. We engineer `is_dual_type` to identify this pokemons and then explore and quantify the gap.
 
 ```{r}
+````
+````{r}
 #| label: tbl-dualtype_stats
 #| tbl-cap: "Summary Power Statistics by Dual-Type Status"
 
@@ -233,6 +255,8 @@ dual_summary |>
 As we can see, Dual-type Pokémon average **`r dual_summary |> filter(is_dual_type) |> pull(mean_power)`** total stats vs **`r dual_summary |> filter(!is_dual_type) |> pull(mean_power)`** for single-types — a \~35-point (8.56%) gap.
 
 ```{r}
+````
+````{r}
 #| label: tbl-primary_dualtype_stats
 #| tbl-cap: "Mean Power Stats by Primary Type and Dual-Type Status"
 
@@ -264,6 +288,8 @@ Dragon dual-types lead all groups at 568 power average. Fire types follows far b
 The analysis from table @tbl-type_distribution can be enriched if we consider the secondary type of pokemons. Considerin the 18 main types and the 19 secondary types (including "None") there are 342 possible combinations we can create a heatmap to visualize the proportion of pokemons by type 1 and type 2 across the total universe of registered pokemons. This will allow us to see which combinations of types are more common and which are more rare.
 
 ```{r}
+````
+````{r}
 #| label: type-heatmap
 #| fig-cap: "Normalized proportion of pokemons by types"
 
@@ -307,6 +333,8 @@ We had done a visualization on the distribituion of stats w.r.t the generation b
 So we try to see the different stats of different types of pokemons and we can look at the graph and find out the Strongest , Weakest , Slowest or Fastest types of pokemons.
 
 ```{r}
+````
+````{r}
 #| label: fig_type-stats
 #| fig-cap: "Average Stats by Primary Type"
 
@@ -378,6 +406,8 @@ ggplot() +
 Coming back to the Dual-type analysis, we perform a violin chart to visualize the distribution of our summarising power stat across the different primary type categories.
 
 ```{r}
+````
+````{r}
 #| label: ggplot-viz-1
 #| fig-cap: "Power Base Stats by Primary Type — Single vs Dual-typing"
 
@@ -451,6 +481,8 @@ After exploring the Pokémon universe across types, generations, and stat distri
 **Dual-type Pokémon are worth the extra effort.** Prioritise dual-type Pokémon, pay attention to generation 4, and do not underestimate type synergy.
 
 ```{r}
+````
+````{r}
 #| label: total-clean
 #| echo: false
 #| include: false
@@ -459,3 +491,5 @@ After exploring the Pokémon universe across types, generations, and stat distri
 rm(list = ls()[ls() != c("colorize", "datawd")])
 gc()
 ```
+````
+
