@@ -7,6 +7,7 @@
 advert = read.csv("advertising.csv", row.names = 1) # import the dataset 
 
 head(advert)
+
 attach(advert) # do you remember the attach command? Otherwise check ?attach
 
 

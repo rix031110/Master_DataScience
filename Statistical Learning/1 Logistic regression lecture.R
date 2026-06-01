@@ -5,7 +5,7 @@
 ## We implement logistic regression on the Titanic dataset
 ## Load the data and remove rows containing NA's
 
-titanic = read.csv("Users\ricdo\Desktop\Master_DataScience\Statistical Learning\titanic_train.csv")
+titanic = read.csv("titanic_train.csv")
 titanic = titanic[complete.cases(titanic),]
 
 head(titanic)
