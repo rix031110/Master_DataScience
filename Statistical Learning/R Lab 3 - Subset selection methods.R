@@ -152,8 +152,9 @@ out_fwd = bestglm(Xy = cbind(X,y), family = binomial(link = "logit"), IC = "AIC"
 
 out_fwd
 summary(out_fwd)
-
+out_fwd$Subsets
 out_bwd = bestglm(Xy = cbind(X,y), family = binomial(link = "logit"),IC = "AIC", method = "backward")
 
 out_bwd
 summary(out_bwd)
+out_bwd$Subsets
