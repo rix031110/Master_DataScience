@@ -25,7 +25,6 @@ str(X.tmp)
 X = model.matrix(y ~ ., X.tmp)[,-1]
 head(X)
 
-
 ######################
 ## 2. Model fitting ##
 ######################

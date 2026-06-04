@@ -1,0 +1,208 @@
+---
+title: "Riccardo Dondi Statistical Learning Exam"
+format: html
+
+---
+
+QUESTION 1
+First of all I will set the seed at 123 and upload the csv file renaming it 'df'. Then I will check the number of rows before and after having selected only the complete cases in the new object 'house_clean'. The difference between the two will be the number of rows containing NA values.
+
+```{r}
+set.seed(123)
+df=read.csv("Riccardo Dondi_house.csv")
+
+nrow(df)
+house_clean= df[complete.cases(df),]
+nrow(house_clean)
+```
+
+Having seen that some variables depends on the size of the census block, I create 3 new variables.
+```{r}
+attach(house_clean)
+house_clean$RoomsPerHousehold=TotalRooms/Households
+
+house_clean$BedroomsPerRoom=TotalBedrooms/TotalRooms
+
+house_clean$PopulationPerHousehold=Population/Households
+
+colnames(house_clean)
+```
+
+I now provide a graphical representation of the new variables through a plot.
+
+```{r}
+plot(x=house_clean$TotalRooms,y=house_clean$Households, type= 'p', main="Room per Household",
+xlab="Total rooms", ylab="Household",ylim=c(0,5358), pch=20)
+
+plot(x=house_clean$TotalBedrooms,y=house_clean$TotalRooms, type= 'p', main="Bedrooms per Room", 
+xlab="Total bedrooms", ylab="Total room",xlim=c(0,6210), pch=20)
+
+
+plot(x=house_clean$Population,y=house_clean$Households, type= 'p', main="Population per Household", xlab="Population", ylab="Household",xlim=c(0,16305), ylim=c(0,5358), pch=20)
+```
+
+I now remove the older versions for 'house_clean' and create a definitve variable 'house' that I will use all along. For each new variable I will also add some summary statistics.
+```{r}
+house= house_clean[,-c(4,5,6)]
+
+summary(house$RoomsPerHousehold)
+summary(house$BedroomsPerRoom)
+summary(house$PopulationPerHousehold)
+```
+
+Question 2
+
+In order to operate a linear regression on median house value, I need to define the response variable 'y' and the predictors 'X'. Obviously I need to remove from X, the response variable y and then using the function lm() I can fit the model and then check the summary of the output.
+
+
+```{r}
+y=house$MedianHouseValue
+X= house[,-c(6)] #removing median house value
+
+output_lm= lm(y ~ ., data=X)
+
+summary_lm=summary(output_lm)
+```
+
+From the summary I can extract:
+- the coefficients, so the weights that each predictor has in predicting the response variable;
+- the residuals, so the difference between the observed and the predicted values;
+- the adjusted R squared, so the percentage of variance explained by the model.It is a value that goes from 0 to 1, the closer to 1, the better the model.In our case the adjusted R squared is 0.65, so the model is able to explain 65% of the variance in the response variable.
+
+```{r}
+output_lm$coefficients
+head(output_lm$residuals)
+summary_lm$adj.r.squared
+```
+
+In the summary, we can also see that next to thecoefficient there are some stars, that indicate the significance of the predictor based on certain values of the p-value. The more stars there are, the more significant is the predictor. In this case, we can byt hte legend that if our significance level would be of 5%, so alpha = 0.05, all the predictors can be used a part for 'OceanProximityNEAR BAY', as it has no symbol.
+
+```{r}
+summary_lm
+```
+
+Question 3: 
+To apply a subset selection model, first of all I need to evaluate the numebr of predicotr, which cannot be more than the columns of the dataset minus 1, as I need to remove the response variable. Then I can use the function regsubsets() from the package 'leaps' to fit the model and then check the summary of the output. The 2 different approaches 'forward' and 'backward' can be used by updating the method argument.
+
+```{r}
+library(ISLR)
+
+library(leaps)
+
+p = ncol(X) #number of predictors
+
+out_fwd = regsubsets(y ~ ., X, nvmax = p, method = "forward")
+reg_summary_fwd = summary(out_fwd)
+
+out_bwd = regsubsets(y ~ ., X, nvmax = p, method = "backward")
+reg_summary_bwd = summary(out_bwd)
+```
+
+Now I extract the adjusted R squred values for each model and plot it in order to find the best combination.
+
+```{r}
+reg_summary_fwd$adjr2
+reg_summary_bwd$adjr2
+```
+
+```{r}
+plot(0:p, c(0, reg_summary_fwd$adjr2), ylim = c(0,1), xlab = "Number of predictors (k)", type = "b",
+     ylab = expression(adjustedR^2), xaxt = "none", col = "cyan4", main = "Forward")
+axis(1, 0:p)
+```
+```{r}
+plot(0:p, c(0, reg_summary_bwd$adjr2), ylim = c(0,1), xlab = "number of predictors (k)", type = "b",
+     ylab = expression(adjustedR^2), xaxt = "none", col = "brown", main = "Backward")
+axis(1, 0:p)
+```
+
+In both approache the best number of predictors which better balances model complexity and accuracy in my opinion is 5. We can now see which are the predictors that are included in the model with 5 predictors. The stars shows which predictors are included in the model.
+```{r}
+reg_summary_fwd
+```
+```{r}
+reg_summary_bwd
+```
+
+Question 4:
+With the library 'tree' I can fit regression trees. The summarised output shows the variables used for the split, the number of observations in each node, the deviance and the prediction for each node. 
+
+```{r}
+library(tree)
+
+tree.house = tree(y ~ ., data = X)
+
+out.house = summary(tree.house)
+out.house
+```
+
+This is the graphical representation of the tree.
+
+```{r}
+par(mfrow=c(1,1))
+plot(tree.house)
+text(tree.house, pretty = 0)
+```
+
+I now apply a cross validation pruning with the function cv.tree(), from which I can find the minimum RSS for an optimal tree size.
+
+```{r}
+cv.house = cv.tree(tree.house, K = 10) # K = 10 for 10-fold cross validation
+
+cv.house$size #number of regions in each fold
+
+cv.house$dev #corresponding RSS (CV errors)
+
+min.rss = which.min(cv.house$dev)
+min.rss
+
+#best size
+size.best = cv.house$size[min.rss]
+size.best
+
+```
+
+Now I can prune the tree to the optimal size. Which corresponds to 10 regions. I can also plot the pruned tree.
+
+```{r}
+prune.house = prune.tree(tree.house, best = size.best)
+
+plot(prune.house)
+text(prune.house)
+```
+
+Question 5
+For me the best model is the one predicted by the regression tree as it is able to capture various relations.
+From the model prune.house, i find the estimated y and calculate the MSE with the standard formula.
+
+```{r}
+df1=read.csv("house_test.csv")
+
+nrow(df1)
+house_clean1= df1[complete.cases(df1),]
+nrow(house_clean1)
+head(house_clean1)
+attach(house_clean1)
+
+house_clean1$RoomsPerHousehold=TotalRooms/Households
+
+house_clean1$BedroomsPerRoom=TotalBedrooms/TotalRooms
+
+house_clean1$PopulationPerHousehold=Population/Households
+
+house_test= house_clean1[,-c(4,5,6, )]
+
+colnames(house_test)
+```
+
+```{r}
+y.hat = predict(prune.house, newdata = house_test[])
+
+unique(y.hat) 
+```
+
+```{r}
+y.test = house_test["MedianHouseValue"]
+
+mean((y.test - y.hat)^2)
+```
